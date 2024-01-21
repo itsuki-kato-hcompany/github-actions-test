@@ -1,0 +1,18 @@
+# アクション名
+name: Github Action Test
+
+# タイミングを指定
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, ready_for_review]
+
+jobs:
+  Test:
+    name: Run test codes
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Test
+        run: echo Hello World
