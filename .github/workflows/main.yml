@@ -30,7 +30,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '14' # お好みのNode.jsのバージョンを指定
+          node-version: '21.5.0'
           cache: npm
 
       - name: Install dependencies
