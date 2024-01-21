@@ -1,0 +1,7 @@
+diff a/src/post/post.service.spec.ts b/src/post/post.service.spec.ts	(rejected hunks)
+@@ -25,4 +25,5 @@
+     const newPost = await postService.createPost(createPostInput);
+     expect(newPost).toMatchObject(createPostInput);
+   });
++  // push test
+ });
