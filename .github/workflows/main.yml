@@ -4,15 +4,24 @@ name: Github Action Test
 # タイミングを指定
 on:
   push:
-    branches: ["master"]
+    branches: ['master']
   pull_request:
-    branches: ["master"]
-    
+    branches: ['master']
+
 jobs:
   Test:
     name: Run test codes
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    services:
+      db:
+        image: postgres:16.1
+        container_name: bulletin-board-db
+        ports:
+          - '5433:5432'
+        environment:
+          POSTGRES_USER: bulletin-board
+          POSTGRES_PASSWORD: auT*k!K9Tp(8
     steps:
       - name: repogitory checkout
         uses: actions/checkout@v4
@@ -22,6 +31,8 @@ jobs:
         with:
           node-version: '21.5.0'
           cache: npm
+      env:
+        DATABASE_URL: postgresql://bulletin-board:auT*k!K9Tp(8@db:5432/bulletin-board
 
       - name: npm install
         run: npm install
@@ -31,6 +42,9 @@ jobs:
 
       - name: npx prisma generate
         run: npx prisma generate
+
+      - name: npx prisma migrate
+        run: npx prisma migrate dev
 
       - name: run test
         run: npm run test
