@@ -3,9 +3,11 @@ name: Github Action Test
 
 # タイミングを指定
 on:
+  push:
+    branches: ["main"]
   pull_request:
-    types: [opened, reopened, synchronize, ready_for_review]
-
+    branches: ["main"]
+    
 jobs:
   Test:
     name: Run test codes
