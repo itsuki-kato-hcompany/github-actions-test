@@ -36,7 +36,7 @@ export class PostService {
   }
 
   async createPost(createPostInput: CreatePostInput): Promise<Post> {
-    // const { userName, title, content } = createPostInput;
+    const { userName, title, content } = createPostInput;
 
     return await this.prismaService.post.create({
       data: {
