@@ -25,5 +25,4 @@ describe('PostServiceTest', () => {
     const newPost = await postService.createPost(createPostInput);
     expect(newPost).toMatchObject(createPostInput);
   });
-  // push test testtest
 });
