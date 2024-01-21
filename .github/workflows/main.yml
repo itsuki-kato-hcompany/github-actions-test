@@ -1,5 +1,5 @@
 # アクション名
-name: Github Action Test
+name: GitHub Action Test
 
 # タイミングを指定
 on:
@@ -21,29 +21,33 @@ jobs:
         env:
           POSTGRES_USER: bulletin-board
           POSTGRES_PASSWORD: auT*k!K9Tp(8
+          POSTGRES_DB: bulletin-board
 
     steps:
-      - name: repogitory checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: setup node
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '21.5.0'
+          node-version: '14' # お好みのNode.jsのバージョンを指定
           cache: npm
 
-      - name: npm install
+      - name: Install dependencies
         run: npm install
 
-      - name: npm build
+      - name: Build
         run: npm run build --if-present
 
-      - name: npx prisma generate
+      - name: Prisma Generate
         run: npx prisma generate
 
-      - name: run test
+      - name: Prisma Migrate
         env:
-          DATABASE_URL: postgresql://bulletin-board:auT*k!K9Tp(8@db:5432/bulletin-board
-        run: |
-          npx prisma migrate dev
-          npm run test
+          DATABASE_URL: postgresql://bulletin-board:auT*k!K9Tp(8@localhost:5433/bulletin-board
+        run: npx prisma migrate dev
+
+      - name: Run tests
+        env:
+          DATABASE_URL: postgresql://bulletin-board:auT*k!K9Tp(8@localhost:5433/bulletin-board
+        run: npm run test
