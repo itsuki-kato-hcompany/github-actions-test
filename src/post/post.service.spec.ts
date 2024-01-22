@@ -20,6 +20,7 @@ describe('PostServiceTest', () => {
       userName: 'user123',
       title: 'title',
       content: 'content',
+      test: ""
     };
 
     const newPost = await postService.createPost(createPostInput);
