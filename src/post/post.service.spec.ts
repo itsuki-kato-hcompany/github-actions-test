@@ -20,10 +20,9 @@ describe('PostServiceTest', () => {
       userName: 'user123',
       title: 'title',
       content: 'content',
-      test: ""
     };
 
     const newPost = await postService.createPost(createPostInput);
-    expect(newPost).toMatchObject(createPostInput);
+    expect(newPost).toMatchObject({...createPostInput, content: 10 });
   });
 });
